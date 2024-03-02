@@ -1,0 +1,94 @@
+{
+  "name": "email-finder",
+  "displayName": "email finder",
+  "description": "Provides email domain search, verification, and count functionalities using the Tomba.io API. Easily integrate email data into your VSCode environment.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "email",
+    "finder",
+    "API",
+    "Verify",
+    "Domain"
+  ],
+  "publisher": "tomba-io",
+  "icon": "assets/tomba.png",
+  "repository": "https://github.com/tomba-io/email-finder-vs-code-extension",
+  "author": {
+    "email": "b.mohamed@tomba.io",
+    "name": "Mohamed benrebia",
+    "url": "https://github.com/tomba-io"
+  },
+  "license": "MIT",
+  "activationEvents": [
+    "onCommand",
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "title": "Tomba.io API KEY",
+        "properties": {
+          "tomba.apiKey": {
+            "type": "string",
+            "default": "",
+            "description": "API key for accessing Tomba.io services"
+          }
+        }
+      },
+      {
+        "title": "Tomba.io API SECRET",
+        "properties": {
+          "tomba.apiSecret": {
+            "type": "string",
+            "default": "",
+            "description": "API Secret for accessing Tomba.io services"
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "extension.findEmailDomain",
+        "title": "Tomba: Find Email Domain Info"
+      },
+      {
+        "command": "extension.verifyEmail",
+        "title": "Tomba: Verify Email Address"
+      },
+      {
+        "command": "extension.emailCount",
+        "title": "Tomba: Count Emails on Domain"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "build": "vsce package -o tomba-io.email-finder-$npm_package_version.vsix --no-yarn",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.87.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vscode/test-cli": "^0.0.6",
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "tomba": "^1.0.2"
+  }
+}
